@@ -50,7 +50,7 @@
     <button onclick="playGame('player2', 'lizard')">Lagarto</button>
     <button onclick="playGame('player2', 'spock')">Spock</button>
 
-    <p id="result"></p>
+    <p id="resultado"></p>
 </div>
 
 <script>
@@ -70,7 +70,7 @@
     function checkResult() {
         if (player1Choice !== null && player2Choice !== null) {
             const result = compareChoices(player1Choice, player2Choice);
-            document.getElementById("result").innerHTML = `Result: ${result}`;
+            document.getElementById("resultado").innerHTML = `Resultado: ${result}`;
             // Reset choices after displaying result
             player1Choice = null;
             player2Choice = null;
