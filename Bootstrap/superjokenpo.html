@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Jokenpo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #game-container {
+            text-align: center;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <h3>Player 1</h3>
+    <button onclick="playGame('player1', 'rock')">Pedra</button>
+    <button onclick="playGame('player1', 'paper')">Papel</button>
+    <button onclick="playGame('player1', 'scissors')">Tesoura</button>
+    <button onclick="playGame('player1', 'lizard')">Lagarto</button>
+    <button onclick="playGame('player1', 'spock')">Spock</button>
+
+    <hr>
+    <img src="./Assets/TEMPLATE.jfif" alt="">
+    <hr>
+
+    <h3>Player 2</h3>
+    <button onclick="playGame('player2', 'rock')">Pedra</button>
+    <button onclick="playGame('player2', 'paper')">Papel</button>
+    <button onclick="playGame('player2', 'scissors')">Tesoura</button>
+    <button onclick="playGame('player2', 'lizard')">Lagarto</button>
+    <button onclick="playGame('player2', 'spock')">Spock</button>
+
+    <p id="result"></p>
+</div>
+
+<script>
+    let player1Choice = null;
+    let player2Choice = null;
+
+    function playGame(player, choice) {
+        if (player === 'player1' && player1Choice === null) {
+            player1Choice = choice;
+        } else if (player === 'player2' && player2Choice === null) {
+            player2Choice = choice;
+        }
+
+        checkResult();
+    }
+
+    function checkResult() {
+        if (player1Choice !== null && player2Choice !== null) {
+            const result = compareChoices(player1Choice, player2Choice);
+            document.getElementById("result").innerHTML = `Result: ${result}`;
+            // Reset choices after displaying result
+            player1Choice = null;
+            player2Choice = null;
+        }
+    }
+
+    function compareChoices(player1Choice, player2Choice) {
+        if (player1Choice === player2Choice) {
+            return "Empate!";
+        } else if (
+            (player1Choice === "rock" && (player2Choice === "scissors" || player2Choice === "lizard")) ||
+            (player1Choice === "paper" && (player2Choice === "rock" || player2Choice === "spock")) ||
+            (player1Choice === "scissors" && (player2Choice === "paper" || player2Choice === "lizard")) ||
+            (player1Choice === "lizard" && (player2Choice === "spock" || player2Choice === "paper")) ||
+            (player1Choice === "spock" && (player2Choice === "scissors" || player2Choice === "rock"))
+        ) {
+            return "Player 1 Venceu!";
+        } else {
+            return "Player 2 Venceu!";
+        }
+    }
+</script>
+
+</body>
+</html>
